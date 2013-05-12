@@ -1,0 +1,2231 @@
+<?xml version="1.0"?>
+<schema version="0.2">
+    <table name="ec_users">
+		<field name="id" type="I" >
+			<key />
+		</field>
+		<field name="user_name" type="C" size="20" />
+		<field name="user_password" type="C" size="30" />
+		<field name="user_hash" type="C" size="32" />
+		<field name="cal_color" type="C" size="25">
+			<default value="#E6FAD8" />
+		</field>
+		<field name="first_name" type="C" size="30" />
+		<field name="last_name" type="C" size="30" />
+		<field name="reports_to_id" type="C" size="36" />
+		<field name="is_admin" type="C" size="3">
+			<default value="0" />
+		</field>
+		<field name="currency_id" type="I" size="19">
+			<default value="1" />
+			<notnull />
+		</field>
+		<field name="description" type="X" />
+		<field name="date_entered" type="T">
+			<notnull />
+			<deftimestamp />
+		</field>
+		<field name="date_modified" type="T">
+			<notnull />
+			<deftimestamp />2011-07-04
+		</field>
+		<field name="modified_user_id" type="C" size="36" />
+		<field name="title" type="C" size="50" />
+		<field name="department" type="C" size="50" />
+		<field name="phone_home" type="C" size="50" />
+		<field name="phone_mobile" type="C" size="50" />
+		<field name="phone_work" type="C" size="50" />
+		<field name="phone_other" type="C" size="50" />
+		<field name="phone_fax" type="C" size="50" />
+		<field name="email1" type="C" size="100" />
+		<field name="email2" type="C" size="100" />
+		<field name="yahoo_id" type="C" size="100" />
+		<field name="status" type="C" size="25" />
+		<field name="signature" type="C" size="250" />
+		<field name="address_street" type="C" size="150" />
+		<field name="address_city" type="C" size="100" />
+		<field name="address_state" type="C" size="100" />
+		<field name="address_country" type="C" size="25" />
+		<field name="address_postalcode" type="C" size="9" />
+		<field name="user_preferences" type="X" />
+		<field name="tz" type="C" size="30" />
+		<field name="holidays" type="C" size="60" />
+		<field name="namedays" type="C" size="60" />
+		<field name="workdays" type="C" size="30" />
+		<field name="weekstart" type="I" size="11" />
+		<field name="date_format" type="C" size="30" />
+		<field name="hour_format" type="C" size="30">
+			<default value="24" />
+		</field>
+		<field name="start_hour" type="C" size="30">
+			<default value="9:00" />
+		</field>
+		<field name="end_hour" type="C" size="30">
+			<default value="23:00" />
+		</field>
+		<field name="homeorder" type="C" size="255">
+			<default value="ALVT,HDB,PLVT,QLTQ,CVLVT,HLT,OLV,OLTSO,ILTI,MNL,OLTPO,LTFAQ" />
+		</field>
+		<field name="activity_view" type="C" size="25">
+			<default value="Today" />
+		</field>
+		<field name="lead_view" type="C" size="25">
+			<default value="Today" />
+		</field>
+		<field name="imagename" type="C" size="250" />
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="defhomeview" type="C" size="100" />
+		<field name="confirm_password" type="C" size="30" />
+
+		<field name="buddylist" type="X" />
+		<field name="is_online" type="I" size="11"/>
+		<field name="last_ping" type="C" size="50" />
+		<field name="prefix" type="C" size="50" />
+
+		<index name="user_user_name_idx">
+			<col>user_name</col>
+		</index>
+		<index name="user_user_password_idx">
+			<col>user_password</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_crmentity">
+		<field name="crmid" type="I" size="19">
+			<key />
+		</field>
+		<field name="smcreatorid" type="I" size="19">
+			<notnull/>
+			<default value="0" />
+		</field>
+		<field name="smownerid" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="modifiedby" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="setype" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="description" type="X" />
+		<field name="createdtime" type="T">
+			<notnull />
+		</field>
+		<field name="modifiedtime" type="T">
+			<notnull />
+		</field>
+		<field name="viewedtime" type="T" />
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<index name="crmentity_smcreatorid_idx">
+			<col>smcreatorid</col>
+		</index>
+		<index name="crmentity_smownerid_idx">
+			<col>smownerid</col>
+		</index>
+		<index name="crmentity_modifiedby_idx">
+			<col>modifiedby</col>
+		</index>
+		<index name="crmentity_deleted_smownerid_idx">
+			<col>deleted</col>
+			<col>smownerid</col>
+		</index>
+		<index name="crmentity_smownerid_deleted_idx">
+			<col>smownerid</col>
+			<col>deleted</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+	<table name="ec_sharedcalendar">
+		<field name="userid" type="I" size="19">
+			<key />
+		</field>
+		<field name="sharedid" type="I" size="19">
+			<key />
+		</field>
+	</table>
+
+	<table name="ec_tab">
+		<field name="tabid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+		<field name="name" type="C" size="25">
+			<notnull />
+		</field>
+		<field name="presence" type="I" size="19">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="tabsequence" type="I" size="10" />
+		<field name="tablabel" type="C" size="25">
+			<notnull />
+		</field>
+		<field name="modifiedby" type="I" size="19" />
+		<field name="modifiedtime" type="I" size="19" />
+		<field name="customized" type="I" size="1" />
+		<field name="reportable" type="I" size="19">
+			<default value="0" />
+		</field>
+
+		<index name="tab_name_idx">
+			<col>name</col>
+			<unique />
+		</index>
+		<index name="tab_modifiedby_idx">
+			<col>modifiedby</col>
+		</index>
+		<index name="tab_tabid_idx">
+			<col>tabid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_blocks">
+		<field name="blockid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="tabid" type="I" size="19">
+			<notnull />
+		</field>
+		<field name="blocklabel" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="sequence" type="I" size="10" />
+		<field name="show_title" type="I" size="2" />
+		<field name="visible" type="I" size="2">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="create_view" type="I" size="2">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="edit_view" type="I" size="2">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="detail_view" type="I" size="2">
+			<notnull />
+			<default value="0" />
+		</field>
+
+		<index name="block_tabid_idx">
+			<col>tabid</col>
+		</index>
+	</table>
+
+	<table name="ec_field">
+		<field name="tabid" type="I" size="19">
+			<notnull />
+		</field>
+		<field name="fieldid" type="I" size="19">
+			<key />
+		</field>
+		<field name="columnname" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="tablename" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="generatedtype" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="uitype" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="fieldname" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="fieldlabel" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="readonly" type="I" size="1">
+			<notnull />
+		</field>
+		<field name="presence" type="I" size="19">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="selected" type="I" size="1">
+			<notnull />
+		</field>
+		<field name="maximumlength" type="I" size="19" />
+		<field name="sequence" type="I" size="19" />
+		<field name="block" type="I" size="19" />
+		<field name="displaytype" type="I" size="19" />
+		<field name="typeofdata" type="C" size="100" />
+		<field name="quickcreate" type="I" size="10">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="quickcreatesequence" type="I" size="19" />
+		<field name="info_type" type="C" size="20" />
+
+		<index name="field_tabid_idx">
+			<col>tabid</col>
+		</index>
+		<index name="field_fieldname_idx">
+			<col>fieldname</col>
+		</index>
+		<index name="field_block_idx">
+			<col>block</col>
+		</index>
+		<index name="field_displaytype_idx">
+			<col>displaytype</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_field" alter="true">
+	<constraint>ADD CONSTRAINT fk_1_ec_field FOREIGN KEY (tabid) REFERENCES ec_tab(tabid) ON DELETE CASCADE</constraint>
+	<opt>Type=InnoDB</opt>
+	<data>
+	</data>
+</table>
+
+	<table name="ec_account">
+		<field name="accountid" type="I" size="19">
+			<key />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="accountname" type="C" size="100">
+			<unique />
+			<notnull />
+		</field>
+       <field name="tao_user_id" type="I" size="19">
+	       <default value="0" />
+		</field>
+		<field name="tao_uid" type="I" size="19">
+	       <default value="0" />
+		</field>
+		<field name="belongshop" type="C" size="100"/>
+        <field name="membername" type="C" size="100" />
+        <field name="sex" type="C" size="50" />
+        <field name="birthday" type="T"  />
+		<field name="rating" type="C" size="50" />
+		<field name="account_buyer_credit" type="C" size="30" />
+		<field name="account_seller_credit" type="C" size="30" />
+		<field name="account_type" type="C" size="50" />
+		<field name="promoted_type" type="C" size="50" />
+		<field name="alipay_no" type="C" size="50" />
+		<field name="alipay_account" type="C" size="50" />
+		<field name="consumer_protection" type="C" size="50" />
+		<field name="alipay_bind" type="C" size="50" />
+		<field name="contact_date" type="T" />
+		<field name="contacttimes" type="I" size="10" >
+			<default value="0" />
+		</field>
+		<field name="vipinfo" type="C" size="50" />
+		<field name="lastorderdate" type="T" />
+        <field name="phone" type="C" size="30" />
+        <field name="tel" type="C" size="30" />
+		<field name="fax" type="C" size="30" />
+		<field name="email" type="C" size="100" />
+		<field name="ordernum" type="I" size="11">
+		<default value="0" />
+		</field>
+		<field name="ordertotal" type="N" size="11.2" />
+		<field name="buy_pro_num" type="I" size="11">
+		<default value="0" />
+		</field>
+		<field name="last_logintime" type="T" />
+		<field name="bill_country" type="C" size="30" />
+		<field name="bill_state" type="C" size="30" />
+		<field name="bill_city" type="C" size="30" />
+		<field name="bill_district" type="C" size="30" />
+		<field name="bill_street" type="C" size="250" />
+		<field name="bill_code" type="C" size="30" />
+		<field name="description" type="X" />
+		<field name="smcreatorid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="smownerid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="modifiedby" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="modifiedtime" type="T">
+		</field>
+		<field name="deleted" type="I" size="1">
+			<default value="0" />
+		</field>
+
+
+		<index name="account_account_type_idx">
+			<col>account_type</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_account" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_account FOREIGN KEY (accountid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_notes">
+		<field name="notesid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+
+		<field name="accountid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="title" type="C" size="250">
+			<notnull />
+		</field>
+		<field name="notetype" type="C" size="50" />
+	    <field name="contact_date" type="T" />
+		<field name="notecontent" type="X" />
+		<field name="smcreatorid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="smownerid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="modifiedby" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="modifiedtime" type="T">
+		</field>
+		<field name="deleted" type="I" size="1">
+			<default value="0" />
+		</field>
+
+		<index name="notes_title_idx">
+			<col>title</col>
+		</index>
+		<index name="notes_notesid_idx">
+			<col>notesid</col>
+		</index>
+		<index name="notes_crmid_idx">
+			<col>crmid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_notes" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_notes FOREIGN KEY (notesid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+	<table name="ec_attachments">
+		<field name="attachmentsid" type="I" size="19">
+			<key />
+		</field>
+		<field name="name" type="C" size="100">
+		</field>
+		<field name="description" type="C" size="100" />
+		<field name="type" type="C" size="100" />
+		<field name="setype" type="C" size="100" />
+		<field name="path" type="C" size="255" />
+		<field name="smcreatorid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="deleted" type="I" size="1">
+			<default value="0" />
+		</field>
+		<index name="attachments_description_name_type_attachmentsid_idx">
+			<col>description</col>
+			<col>name</col>
+			<col>type</col>
+			<col>attachmentsid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_attachments" alter="true">
+	<constraint>ADD CONSTRAINT fk_1_ec_attachments FOREIGN KEY (attachmentsid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+	<opt>Type=InnoDB</opt>
+	<data>
+	</data>
+	</table>
+
+	<table name="ec_seattachmentsrel">
+		<field name="crmid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+		<field name="attachmentsid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+
+		<index name="seattachmentsrel_attachmentsid_idx">
+			<col>attachmentsid</col>
+		</index>
+		<index name="seattachmentsrel_crmid_idx">
+			<col>crmid</col>
+		</index>
+		<index name="seattachmentsrel_attachmentsid_crmid_idx">
+			<col>attachmentsid</col>
+			<col>crmid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_seattachmentsrel" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_seattachmentsrel FOREIGN KEY (attachmentsid) REFERENCES ec_attachments(attachmentsid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_seattachmentsrel FOREIGN KEY (crmid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_tracker">
+		<field name="id" type="I" size="11">
+			<key />
+		</field>
+		<field name="user_id" type="C" size="36" />
+		<field name="module_name" type="C" size="25" />
+		<field name="item_id" type="C" size="36" />
+		<field name="item_summary" type="C" size="255" />
+	</table>
+
+<table name="ec_products">
+		<field name="productid" type="I" size="11">
+			<key />
+		</field>
+		<field name="productname" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="productcode" type="C" size="100" />
+		<field name="pro_type" type="C" size="100" />
+		<field name="detail_url" type="C" size="100" />
+		<field name="num_iid" type="I" size="19" />
+		<field name="outer_id" type="C" size="30" />
+		<field name="num" type="I" size="11" />
+		<field name="valid_thru" type="C" size="30" />
+		<field name="list_time" type="T">
+		</field>
+		<field name="delist_time" type="T">
+		</field>
+		<field name="stuff_status" type="C" size="30" />
+		<field name="location" type="C" size="200" />
+		<field name="price" type="N" size="11.2" />
+		<field name="post_fee" type="N" size="11.2" />
+		<field name="express_fee" type="N" size="11.2" />
+		<field name="ems_fee" type="N" size="11.2" />
+		<field name="props" type="C" size="100" />
+		<field name="property_alias" type="C" size="100" />
+		<field name="has_invoice" type="C" size="30" />
+		<field name="has_warranty" type="C" size="30" />
+		<field name="has_showcase" type="C" size="30" />
+		<field name="increment" type="C" size="30" />
+		<field name="approve_status" type="C" size="30" />
+		<field name="has_discount" type="C" size="30" />
+		<field name="freight_payer" type="C" size="30" />
+		<field name="is_taobao" type="C" size="30" />
+		<field name="is_ex" type="C" size="30" />
+		<field name="auction_point" type="C" size="30" />
+		<field name="imagename" type="X" />
+		<field name="description" type="X" />
+		<field name="smcreatorid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="modifiedby" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="modifiedtime" type="T">
+		</field>
+		<field name="deleted" type="I" size="1">
+			<default value="0" />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_products" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_products FOREIGN KEY (productid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+	<table name="ec_role">
+		<field name="roleid" type="C" size="255">
+			<key />
+		</field>
+		<field name="rolename" type="C" size="200" />
+		<field name="parentrole" type="C" size="255" />
+		<field name="depth" type="I" size="19" />
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_user2role">
+		<field name="userid" type="I" size="11">
+			<key />
+		</field>
+		<field name="roleid" type="C" size="255">
+			<notnull />
+		</field>
+
+		<index name="user2role_roleid_idx">
+			<col>roleid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_user2role" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_user2role FOREIGN KEY (roleid) REFERENCES ec_role(roleid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_user2role FOREIGN KEY (userid) REFERENCES ec_users(id) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_groups">
+		<field name="groupid" type="I" size="19">
+			<key />
+		</field>
+		<field name="groupname" type="C" size="100" />
+		<field name="description" type="X" />
+
+		<index name="groups_groupname_idx">
+			<col>groupname</col>
+			<unique />
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_users2group">
+		<field name="groupid" type="I" size="19">
+			<key />
+		</field>
+		<field name="userid" type="I" size="19">
+			<key />
+		</field>
+
+		<index name="users2group_groupname_uerid_idx">
+			<col>groupid</col>
+			<col>userid</col>
+		</index>
+	</table>
+
+<table name="ec_users2group" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_users2group FOREIGN KEY (groupid) REFERENCES ec_groups(groupid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_users2group FOREIGN KEY (userid) REFERENCES ec_users(id) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_group2grouprel">
+		<field name="groupid" type="I" size="19">
+			<key />
+		</field>
+		<field name="containsgroupid" type="I" size="19">
+			<key />
+		</field>
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_group2grouprel" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_group2grouprel FOREIGN KEY (containsgroupid) REFERENCES ec_groups(groupid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_group2grouprel FOREIGN KEY (groupid) REFERENCES ec_groups(groupid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_group2role">
+		<field name="groupid" type="I" size="19">
+			<key />
+		</field>
+		<field name="roleid" type="C" size="255">
+			<key />
+		</field>
+	</table>
+
+<table name="ec_group2role" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_group2role FOREIGN KEY (groupid) REFERENCES ec_groups(groupid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_group2role FOREIGN KEY (roleid) REFERENCES ec_role(roleid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_group2rs">
+		<field name="groupid" type="I" size="19">
+			<key />
+		</field>
+		<field name="roleandsubid" type="C" size="255">
+			<key />
+		</field>
+	</table>
+
+<table name="ec_group2rs" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_group2rs FOREIGN KEY (groupid) REFERENCES ec_groups(groupid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_group2rs FOREIGN KEY (roleandsubid) REFERENCES ec_role(roleid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+
+
+<table name="ec_accountproductrel">
+		<field name="accountid" type="I" size="19">
+			<key />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="productid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+
+		<index name="accountproductrel_productid_idx">
+			<col>productid</col>
+		</index>
+		<index name="accountproductrel_accountid_idx">
+			<col>accountid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+</table>
+
+<table name="ec_accountproductrel" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_accountproductrel FOREIGN KEY (accountid) REFERENCES ec_account(accountid) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_accountproductrel FOREIGN KEY (productid) REFERENCES ec_products(productid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+
+	<table name="ec_headers">
+		<field name="fileid" type="I" size="3">
+			<key />
+			<autoincrement />
+		</field>
+		<field name="headernames" type="C" size="30">
+			<notnull />
+		</field>
+	</table>
+
+	<table name="ec_import_maps">
+		<field name="id" type="I" size="19">
+			<key />
+		</field>
+		<field name="name" type="C" size="36">
+			<notnull />
+		</field>
+		<field name="module" type="C" size="36">
+			<notnull />
+		</field>
+		<field name="content" type="B" />
+		<field name="has_header" type="I" size="1">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="date_entered" type="T">
+			<notnull />
+			<deftimestamp />
+		</field>
+		<field name="date_modified" type="T">
+			<notnull />
+			<deftimestamp />
+		</field>
+		<field name="assigned_user_id" type="C" size="36" />
+		<field name="is_published" type="C" size="3">
+			<notnull />
+			<default value="no" />
+		</field>
+
+		<index name="import_maps_assigned_user_id_module_name_deleted_idx">
+			<col>assigned_user_id</col>
+			<col>module</col>
+			<col>name</col>
+			<col>deleted</col>
+		</index>
+	</table>
+
+	<table name="ec_systems">
+		<field name="id" type="I" size="19">
+			<key />
+		</field>
+		<field name="server" type="C" size="50" />
+		<field name="server_port" type="I" size="19" />
+		<field name="server_username" type="C" size="50" />
+		<field name="server_password" type="C" size="50" />
+		<field name="server_type" type="C" size="50" />
+		<field name="smtp_auth" type="C" size="5" />
+	</table>
+
+	<table name="ec_messageaccount">
+		<field name="id" type="I" size="19">
+			<key />
+		</field>
+		<field name="username" type="C" size="30" />
+		<field name="password" type="C" size="30" />
+	</table>
+
+	<table name="ec_currency_info">
+		<field name="id" type="I" >
+			<key />
+		</field>
+		<field name="currency_name" type="C" size="100" />
+		<field name="currency_code" type="C" size="100" />
+		<field name="currency_symbol" type="C" size="30" />
+		<field name="conversion_rate" type="N" size="10.2" />
+		<field name="currency_status" type="C" size="25" />
+		<field name="defaultid" type="C" size="10">
+			<notnull />
+			<default value="0" />
+		</field>
+	</table>
+
+	<table name="ec_emailtemplates">
+		<field name="foldername" type="C" size="100" />
+		<field name="templatename" type="C" size="100" />
+		<field name="subject" type="C" size="100" />
+		<field name="description" type="X" />
+		<field name="body" type="X" />
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="templateid" type="I" size="19">
+			<key />
+		</field>
+
+		<index name="emailtemplates_foldernamd_templatename_subject_idx">
+			<col>foldername</col>
+			<col>templatename</col>
+			<col>subject</col>
+		</index>
+	</table>
+
+
+	<table name="ec_loginhistory">
+		<field name="login_id" type="I" size="11">
+			<key />
+		</field>
+		<field name="user_name" type="C" size="25">
+			<notnull />
+		</field>
+		<field name="user_ip" type="C" size="25">
+			<notnull />
+		</field>
+		<field name="logout_time" type="T">
+			<deftimestamp />
+		</field>
+		<field name="login_time" type="T">
+			<deftimestamp />
+		</field>
+		<field name="status" type="C" size="25" />
+	</table>
+
+	<table name="ec_users_last_import">
+		<field name="id" type="I" size="36">
+			<key />
+		</field>
+		<field name="assigned_user_id" type="C" size="36" />
+		<field name="bean_type" type="C" size="36" />
+		<field name="bean_id" type="C" size="36" />
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+
+		<index name="idx_user_id">
+			<col>assigned_user_id</col>
+		</index>
+	</table>
+
+	<table name="ec_profile">
+		<field name="profileid" type="I" size="10">
+			<key />
+		</field>
+		<field name="profilename" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="description" type="X" />
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_profile2globalpermissions">
+		<field name="profileid" type="I" size="19">
+			<key />
+		</field>
+		<field name="globalactionid" type="I" size="19">
+			<key />
+		</field>
+		<field name="globalactionpermission" type="I" size="19" />
+
+		<index name="idx_profile2globalpermissions">
+			<col>profileid</col>
+			<col>globalactionid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_profile2globalpermissions" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_profile2globalpermissions FOREIGN KEY (profileid) REFERENCES ec_profile(profileid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_profile2tab">
+		<field name="profileid" type="I" size="11" />
+		<field name="tabid" type="I" size="10" />
+		<field name="permissions" type="I" size="10">
+			<notnull />
+			<default value="0" />
+		</field>
+
+		<index name="profile2tab_profileid_tabid_idx">
+			<col>profileid</col>
+			<col>tabid</col>
+		</index>
+	</table>
+
+	<table name="ec_profile2standardpermissions">
+		<field name="profileid" type="I" size="11">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="10">
+			<key />
+		</field>
+		<field name="Operation" type="I" size="10">
+			<key />
+		</field>
+		<field name="permissions" type="I" size="1" />
+
+		<index name="profile2standardpermissions_profileid_tabid_Operation_idx">
+			<col>profileid</col>
+			<col>tabid</col>
+			<col>Operation</col>
+		</index>
+	</table>
+	<table name="ec_role2profile">
+		<field name="roleid" type="C" size="255">
+			<key />
+		</field>
+		<field name="profileid" type="I" size="11">
+			<key />
+		</field>
+		<index name="role2profile_roleid_profileid_idx">
+			<col>roleid</col>
+			<col>profileid</col>
+		</index>
+	</table>
+
+	<table name="ec_org_share_action_mapping">
+		<field name="share_action_id" type="I" size="19">
+			<key />
+		</field>
+		<field name="share_action_name" type="C" size="200" />
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_def_org_share">
+		<field name="ruleid" type="I" size="11">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="11">
+			<notnull />
+		</field>
+		<field name="permission" type="I" size="19">
+		</field>
+		<field name="editstatus" type="I" size="19" />
+	</table>
+
+<table name="ec_def_org_share" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_def_org_share FOREIGN KEY (permission) REFERENCES ec_org_share_action_mapping(share_action_id) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_def_org_field">
+		<field name="tabid" type="I" size="10" />
+		<field name="fieldid" type="I" size="19">
+			<key />
+		</field>
+		<field name="visible" type="I" size="19" />
+		<field name="readonly" type="I" size="19" />
+
+		<index name="def_org_field_tabid_fieldid_idx">
+			<col>tabid</col>
+			<col>fieldid</col>
+		</index>
+		<index name="def_org_field_tabid_idx">
+			<col>tabid</col>
+		</index>
+		<index name="def_org_field_visible_fieldid_idx">
+			<col>visible</col>
+			<col>fieldid</col>
+		</index>
+	</table>
+
+	<table name="ec_profile2utility">
+		<field name="profileid" type="I" size="11">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="11">
+			<key />
+		</field>
+		<field name="activityid" type="I" size="11">
+			<key />
+		</field>
+		<field name="permission" type="I" size="1" />
+
+		<index name="profile2utility_profileid_tabid_activityid_idx">
+			<col>profileid</col>
+			<col>tabid</col>
+			<col>activityid</col>
+		</index>
+	</table>
+		<table name="ec_salesorder">
+		<field name="salesorderid" type="I" size="19">
+			<key />
+			<notnull />
+			<default value="0" />
+		</field>
+		tid
+		<field name="tid" type="C" size="100" />
+		<field name="oid" type="C" size="100" />
+		<field name="subject" type="C" size="100" />
+		<field name="accountid" type="I" size="19" />
+		<field name="currency" type="C" size="100" />
+		<field name="is_oversold" type="C" size="30" />
+		<field name="orderstatus" type="C" size="50" />
+		<field name="num" type="C" size="30" />
+		<field name="shipping_type" type="C" size="30" />
+		<field name="pay_type" type="C" size="30" />
+		<field name="point_fee" type="N" size="11.2" />
+		<field name="buyer_obtain_point_fee" type="N" size="11.2" />
+		<field name="postage" type="N" size="11.2" />
+		<field name="pay_time" type="T" />
+		<field name="total" type="N" size="11.2" />
+		<field name="payment" type="N" size="11.2" />
+		<field name="sku_properties_name" type="C" size="100" />
+		<field name="express_agency_fee" type="N" size="11.2" />
+		<field name="invoice_name" type="C" size="100" />
+    	<field name="buyer_nick" type="C" size="30" />
+		<field name="buyer_alipay_no" type="C" size="100" />
+		<field name="buyer_memo" type="C" size="100" />
+		<field name="buyer_flag" type="C" size="30" />
+		<field name="buyer_rate" type="C" size="30" />
+		<field name="buyer_credit" type="C" size="50" />
+		<field name="buyer_message" type="X" />
+		<field name="receiver_name" type="C" size="30" />
+		<field name="receiver_state" type="C" size="30" />
+		<field name="receiver_city" type="C" size="30" />
+		<field name="receiver_district" type="C" size="30" />
+		<field name="receiver_street" type="C" size="200" />
+		<field name="receiver_code" type="C" size="30" />
+		<field name="receiver_phone" type="C" size="30" />
+		<field name="receiver_tel" type="C" size="30" />
+     	<field name="seller_name" type="C" size="30" />
+		<field name="seller_nick" type="C" size="30" />
+		<field name="seller_mobile" type="C" size="30" />
+		<field name="seller_phone" type="C" size="30" />
+		<field name="seller_email" type="C" size="100" />
+		<field name="consign_time" type="T"  />
+		<field name="seller_alipay_no" type="C" size="100" />
+		<field name="seller_memo" type="C" size="100" />
+		<field name="seller_flag" type="C" size="30" />
+		<field name="seller_rate" type="C" size="30" />
+		<field name="adjust_fee" type="N" size="11.2" />
+		<field name="received_payment" type="N" size="11.2" />
+		<field name="seller_credit" type="C" size="50" />
+		<field name="trade_title" type="C" size="200" />
+		<field name="trade_type" type="C" size="30" />
+		<field name="trade_status" type="C" size="30" />
+		<field name="trade_from" type="C" size="50" />
+		<field name="trade_commission_fee" type="N" size="11.2" />
+		<field name="trade_snapshot_url" type="C" size="100" />
+		<field name="is_threed" type="C" size="30" />
+		<field name="trade_promotion" type="C" size="200" />
+		<field name="trade_available_confirm_fee" type="N" size="11.2" />
+		<field name="trade_created" type="T">
+		</field>
+		<field name="trade_modified" type="T">
+		</field>
+		<field name="trade_end_time" type="T">
+		</field>
+		<field name="item_meal_name" type="X" />
+		<field name="promotion_name" type="C" size="100" />
+		<field name="discount_fee" type="N" size="11.2" />
+		<field name="gift_item_name" type="C" size="200" />
+		<field name="wl_no" type="C" size="50" />
+		<field name="wl_company" type="C" size="50" />
+		<field name="description" type="X" />
+		<field name="smcreatorid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="smownerid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="modifiedby" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="modifiedtime" type="T">
+		</field>
+		<field name="deleted" type="I" size="1">
+			<default value="0" />
+		</field>
+
+		<index name="salesorder_vendorid_idx">
+			<col>vendorid</col>
+		</index>
+		<index name="salesorder_contactid_idx">
+			<col>contactid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_salesorder" alter="true">
+<constraint>ADD CONSTRAINT fk_2_ec_salesorder FOREIGN KEY (salesorderid) REFERENCES ec_crmentity(crmid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_relatedlists">
+		<field name="relation_id" type="I" size="19">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="10" />
+		<field name="related_tabid" type="I" size="10" />
+		<field name="name" type="C" size="100" />
+		<field name="sequence" type="I" size="10" />
+		<field name="label" type="C" size="100" />
+		<field name="presence" type="I" size="10">
+			<notnull />
+			<default value="0" />
+		</field>
+
+		<index name="relatedlists_relation_id_idx">
+			<col>relation_id</col>
+		</index>
+	</table>
+
+
+
+
+	<table name="ec_mail_accounts">
+		<field name="account_id" type="I" size="11">
+			<key />
+		</field>
+		<field name="user_id" type="I" size="11">
+			<notnull />
+		</field>
+		<field name="display_name" type="C" size="50" />
+		<field name="mail_id" type="C" size="50" />
+		<field name="account_name" type="C" size="50" />
+		<field name="mail_protocol" type="C" size="20" />
+		<field name="mail_username" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="mail_password" type="C" size="20">
+			<notnull />
+		</field>
+		<field name="mail_servername" type="C" size="50" />
+		<field name="box_refresh" type="I" size="10" />
+		<field name="mails_per_page" type="I" size="10" />
+		<field name="ssltype" type="C" size="50" />
+		<field name="sslmeth" type="C" size="50" />
+		<field name="int_mailer" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="status" type="C" size="10" />
+		<field name="set_default" type="I" size="2" />
+	</table>
+
+
+
+	<table name="ec_activity_reminder">
+		<field name="activity_id" type="I" size="11">
+			<key />
+			<notnull />
+		</field>
+		<field name="reminder_time" type="I" size="11">
+			<notnull />
+		</field>
+		<field name="reminder_sent" type="I" size="2">
+			<notnull />
+		</field>
+		<field name="recurringid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+	</table>
+
+	<table name="ec_customview">
+		<field name="cvid" type="I" size="19">
+			<key />
+		</field>
+		<field name="viewname" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="setdefault" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="setmetrics" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="entitytype" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="setpublic" type="C" size="200">
+		    <default value="0" />
+		</field>
+		<field name="collectcolumn" type="C" size="150">
+		</field>
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_cvcolumnlist">
+		<field name="cvid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="columnindex" type="I" size="11">
+			<key />
+			<notnull />
+		</field>
+		<field name="columnname" type="C" size="250">
+			<default value="" />
+		</field>
+
+		<index name="cvcolumnlist_columnindex_idx">
+			<col>columnindex</col>
+		</index>
+		<index name="cvcolumnlist_cvid_idx">
+			<col>cvid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_cvcolumnlist" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_cvcolumnlist FOREIGN KEY (cvid) REFERENCES ec_customview (cvid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_cvstdfilter">
+		<field name="cvid" type="I" size="19">
+			<key />
+		</field>
+		<field name="columnname" type="C" size="250">
+			<default value="" />
+		</field>
+		<field name="stdfilter" type="C" size="250">
+			<default value="" />
+		</field>
+		<field name="startdate" type="D">
+			<default value="NULL" />
+		</field>
+		<field name="enddate" type="D">
+			<default value="NULL" />
+		</field>
+
+		<index name="cvstdfilter_cvid_idx">
+			<col>cvid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_cvstdfilter" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_cvstdfilter FOREIGN KEY (cvid) REFERENCES ec_customview (cvid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_cvadvfilter">
+		<field name="cvid" type="I" size="19">
+			<key />
+		</field>
+		<field name="columnindex" type="I" size="11">
+			<key />
+			<notnull />
+		</field>
+		<field name="columnname" type="C" size="250">
+			<default value="" />
+		</field>
+		<field name="comparator" type="C" size="10">
+			<default value="" />
+		</field>
+		<field name="value" type="C" size="200">
+			<default value="" />
+		</field>
+
+		<index name="cvadvfilter_cvid_idx">
+			<col>cvid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_cvadvfilter" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_cvadvfilter FOREIGN KEY (cvid) REFERENCES ec_customview (cvid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_selectquery">
+		<field name="queryid" type="I" size="19">
+			<key />
+		</field>
+		<field name="startindex" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="numofobjects" type="I" size="19">
+			<default value="0" />
+		</field>
+
+		<index name="selectquery_queryid_idx">
+			<col>queryid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_selectcolumn">
+		<field name="queryid" type="I" size="19">
+			<key />
+		</field>
+		<field name="columnindex" type="I" size="11">
+			<key />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="columnname" type="C" size="250">
+			<default value="" />
+		</field>
+
+		<index name="selectcolumn_queryid_idx">
+			<col>queryid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_selectcolumn" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_selectcolumn FOREIGN KEY (queryid) REFERENCES ec_selectquery (queryid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+	<table name="ec_relcriteria">
+		<field name="queryid" type="I" size="19">
+			<key />
+		</field>
+		<field name="columnindex" type="I" size="11">
+			<key />
+			<notnull />
+		</field>
+		<field name="columnname" type="C" size="250">
+			<default value="" />
+		</field>
+		<field name="comparator" type="C" size="10">
+			<default value="" />
+		</field>
+		<field name="value" type="C" size="200">
+			<default value="" />
+		</field>
+
+		<index name="relcriteria_queryid_idx">
+			<col>queryid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_relcriteria" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_relcriteria FOREIGN KEY (queryid) REFERENCES ec_selectquery (queryid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+	<table name="ec_organizationdetails">
+		<field name="organizationname" type="C" size="60">
+			<key />
+		</field>
+		<field name="address" type="C" size="150" />
+		<field name="city" type="C" size="100" />
+		<field name="state" type="C" size="100" />
+		<field name="country" type="C" size="100" />
+		<field name="code" type="C" size="30" />
+		<field name="phone" type="C" size="30" />
+		<field name="fax" type="C" size="30" />
+		<field name="website" type="C" size="100" />
+		<field name="logoname" type="C" size="50" />
+		<field name="logo" type="X" />
+
+		<field name="person" type="C" size="50" />
+		<field name="bankname" type="C" size="100" />
+		<field name="bankaccount" type="C" size="100" />
+		<field name="taxno" type="C" size="100" />
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+	<table name="ec_actionmapping">
+		<field name="actionid" type="I" size="19">
+			<key />
+		</field>
+		<field name="actionname" type="C" size="200">
+			<key />
+		</field>
+		<field name="securitycheck" type="I" size="19" />
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_org_share_action2tab">
+		<field name="share_action_id" type="I" size="19">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="19">
+			<key />
+		</field>
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+<table name="ec_org_share_action2tab" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_org_share_action2tab FOREIGN KEY (share_action_id) REFERENCES ec_org_share_action_mapping(share_action_id) ON DELETE CASCADE</constraint>
+<constraint>ADD CONSTRAINT fk_2_ec_org_share_action2tab FOREIGN KEY (tabid) REFERENCES ec_tab(tabid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+
+	<table name="ec_datashare_module_rel">
+		<field name="shareid" type="I" size="19">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="19">
+			<notnull />
+		</field>
+		<field name="relationtype" type="C" size="200">
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+		<index name="idx_datashare_module_rel_tabid">
+			<col>tabid</col>
+		</index>
+	</table>
+
+<table name="ec_datashare_module_rel" alter="true">
+<constraint>ADD CONSTRAINT fk_1_ec_datashare_module_rel FOREIGN KEY (tabid) REFERENCES ec_tab(tabid) ON DELETE CASCADE</constraint>
+<opt>Type=InnoDB</opt>
+<data>
+</data>
+</table>
+
+
+
+	<table name="ec_parenttab">
+		<field name="parenttabid" type="I" size="19">
+			<notnull />
+			<key />
+		</field>
+		<field name="parenttab_label" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="sequence" type="I" size="10">
+			<notnull />
+		</field>
+		<field name="visible" type="I" size="2">
+			<notnull />
+			<default value="0" />
+		</field>
+		<index name="parenttab_parenttabid_parenttabl_label_visible_idx">
+			<col>parenttabid</col>
+			<col>parenttab_label</col>
+			<col>visible</col>
+		</index>
+	</table>
+
+
+
+	<table name="ec_parenttabrel">
+		<field name="parenttabid" type="I" size="3">
+			<notnull />
+		</field>
+		<field name="tabid" type="I" size="3">
+			<notnull />
+		</field>
+		<field name="sequence" type="I" size="3">
+			<notnull />
+		</field>
+
+		<index name="parenttabrel_tabid_parenttabid_idx">
+			<col>tabid</col>
+			<col>parenttabid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+
+	<table name="ec_audit_trial">
+		<field name="auditid" type="I" size="19">
+			<key />
+		</field>
+		<field name="userid" type="I" size="19" />
+		<field name="module" type="C" size="255" />
+		<field name="action" type="C" size="255" />
+		<field name="recordid" type="C" size="20" />
+		<field name="actiondate" type="T"/>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_inventoryproductrel">
+		<field name="id" type="I" size="19" />
+		<field name="productid" type="I" size="19" />
+		<field name="sequence_no" type="I" size="4" />
+		<field name="quantity" type="N" size="11.2" />
+		<field name="listprice" type="N" size="11.2" />
+		<field name="discount_percent" type="N" size="11.2" />
+		<field name="discount_amount" type="N" size="11.2" />
+		<field name="comment" type="C" size="100" />
+		<field name="pricebookid" type="I" size="19" />
+
+		<index name="inventoryproductrel_id_idx">
+			<col>id</col>
+		</index>
+		<index name="inventoryproductrel_productid_idx">
+			<col>productid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+	<table name="ec_entityname">
+		<field name="tabid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+		<field name="modulename" type="C" size="50">
+			<notnull />
+		</field>
+		<field name="tablename" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="fieldname" type="C" size="150">
+			<notnull />
+		</field>
+		<field name="entityidfield" type="C" size="150">
+			<notnull />
+		</field>
+		<index name="entityname_tabid_idx">
+			<col>tabid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_sharerecords">
+	  <field name="crmid" type="I" >
+		<notnull />
+	  </field>
+	  <field name="userid" type="I" >
+		<notnull />
+	  </field>
+	  <field name="action" type="C" size="20" />
+	  <field name="module" type="C" size="50" />
+	  <index name="sharerecords_crmuserid_idx">
+			<col>crmid</col>
+			<col>userid</col>
+	  </index>
+	  <index name="sharerecords_crmuseridmodule_idx">
+			<col>crmid</col>
+			<col>module</col>
+			<col>userid</col>
+	  </index>
+	  <index name="sharerecords_crmidmodule_idx">
+			<col>crmid</col>
+			<col>module</col>
+	  </index>
+	</table>
+	<table name="ec_modules">
+		<field name="id" type="I" >
+			<key />
+		</field>
+		<field name="enname" type="C" size="50" />
+		<field name="cnname" type="C" size="50" />
+		<field name="status" type="C" size="50" />
+		<field name="parenttabid" type="I" />
+		<field name="displayorder" type="I" />
+		<field name="deleted" type="I" size="1">
+		<default value="0" />
+		</field>
+		<field name="description" type="C" size="255" />
+		<field name="is_accountid" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="is_contactid" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="approve" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="importexport" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="attachment" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="product" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="relatedmodule" type="C" size="50" />
+
+	</table>
+
+	<table name="ec_othersystems">
+		<field name="id" type="I" size="19">
+			<key />
+		</field>
+		<field name="server" type="C" size="30" />
+		<field name="server_port" type="I" size="19" />
+		<field name="server_username" type="C" size="30" />
+		<field name="server_password" type="C" size="30" />
+		<field name="server_type" type="C" size="20" />
+		<field name="db_name" type="C" size="20" />
+		<field name="db_prefix" type="C" size="20" />
+	</table>
+	<table name="ec_activity_reminder_popup">
+		<field name="semodule" type="C" size="100" >
+			<notnull />
+		</field>
+		<field name="recordid" type="I" size="19" >
+			<notnull />
+		</field>
+		<field name="reminder_time" type="I" size="11">
+			<notnull />
+		</field>
+		<field name="status" type="I" size="2" >
+			<notnull />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_crmentityrel">
+		<field name="module" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="relmodule" type="C" size="100">
+			<notnull />
+		</field>
+		<index name="module_relmodule_idx">
+			<col>module</col>
+			<col>relmodule</col>
+			<unique />
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_moduleentityrel">
+		<field name="crmid" type="I">
+			<notnull />
+		</field>
+		<field name="module" type="C" size="100">
+			<notnull />
+		</field>
+		<field name="relcrmid" type="I">
+			<notnull />
+		</field>
+		<field name="relmodule" type="C" size="100">
+			<notnull />
+		</field>
+		<index name="module_crmid_idx">
+			<col>crmid</col>
+		</index>
+		<index name="module_relcrmid_idx">
+			<col>relcrmid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_productfieldlist">
+		<field name="id" type="I" >
+			<key />
+		</field>
+		<field name="fieldname" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="module" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="width" type="C" size="10">
+			<notnull />
+		</field>
+		<index name="module_crmid_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_approvestatus">
+		<field name="id" type="I" size="19" >
+			<key/>
+		</field>
+		<field name="statusid" type="I" size="2" >
+		</field>
+		<field name="approvestatus" type="C" size="20" >
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_keyuser">
+		<field name="userid" type="I" size="19">
+		</field>
+		<field name="type" type="C" size="19">
+		</field>
+		<field name="iskeyuser" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<index name="keyuser_useridtype_idx">
+			<col>userid</col>
+			<col>type</col>
+			<unique />
+		</index>
+	</table>
+	<table name="ec_assignhistory">
+		<field name="accountid" type="I" size="19">
+			<key />
+		</field>
+		<field name="userid" type="I" size="19">
+		</field>
+		<field name="startdate" type="D">
+		</field>
+		<field name="enddate" type="D">
+		</field>
+		<field name="assigntime" type="T">
+		</field>
+		<index name="assignhistory_accountid_idx">
+			<col>crid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_homestuff">
+		<field name="stuffid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+		<field name="stuffsequence" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="stufftype" type="C" size="100" />
+		<field name="userid" type="I" size="19">
+			<notnull />
+		</field>
+		<field name="visible" type="I" size="10">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="stufftitle" type="C" size="100" />
+		<index name="stuff_stuffid_idx">
+			<col>stuffid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_homedefault">
+		<field name="stuffid" type="I" size="19">
+			<key />
+			<default value="0" />
+		</field>
+		<field name="stufftype" type="C" size="30">
+		</field>
+		<field name="stuffsequence" type="I" size="19">
+			<notnull />
+		</field>
+		<index name="stuff_stuffid_idx">
+			<col>stuffid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_modulelist">
+		<field name="tabid" type="I" size="19">
+
+		</field>
+		<field name="type" type="C" size="25">
+		</field>
+		<field name="filename" type="C" size="100">
+		</field>
+		<field name="filememo" type="C" size="100">
+		</field>
+		<index name="modulelist_tabidtype_idx">
+			<col>tabid</col>
+			<col>type</col>
+			<col>filename</col>
+			<unique />
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_approve">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="tabid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="name" type="C" size="100">
+		<notnull />
+		</field>
+		<field name="memo" type="X">
+		</field>
+		<field name="username" type="I" size="19">
+		</field>
+		<field name="department" type="I" size="19">
+		</field>
+		<field name="used" type="I" size="19">
+		</field>
+		<field name="creator" type="I" size="19">
+		</field>
+		<field name="last_updater" type="I" size="19">
+		</field>
+		<field name="created_at" type="T">
+		</field>
+		<field name="updated_at" type="T">
+		</field>
+		<field name="userselected" type="I" size="19">
+		</field>
+		<index name="approve_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_approve2user">
+		<field name="approveid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="userid" type="C" size="255">
+		<notnull />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_approvelog">
+		<field name="id" type="I" size="19">
+			<key />
+		</field>
+		<field name="crmid" type="I" size="19">
+		</field>
+		<field name="memo" type="X">
+		</field>
+		<field name="approveid" type="I" size="19">
+		</field>
+		<field name="stepid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="approved_by" type="I" size="19">
+		</field>
+		<field name="approveresult" type="I" size="11">
+		<default value="0" />
+		</field>
+		<field name="created_at" type="T">
+		</field>
+		<field name="updated_at" type="T">
+		</field>
+		<field name="prestepid" type="I" size="19">
+		</field>
+		<index name="approvelog_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_approvestep">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="approveid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="name" type="C" size="100">
+		<notnull />
+		</field>
+		<field name="memo" type="X">
+		</field>
+		<field name="ended" type="I" size="1">
+		<default value="0" />
+		<notnull />
+		</field>
+		<field name="isfirststep" type="I" size="1">
+		<default value="0" />
+		<notnull />
+		</field>
+		<field name="sequnce" type="I" size="11">
+		<default value="1" />
+		<notnull />
+		</field>
+		<field name="nextstep" type="I" size="19">
+		</field>
+		<field name="created_at" type="T">
+		<notnull />
+		</field>
+		<field name="updated_at" type="T">
+		<notnull />
+		</field>
+		<field name="alterapproveowner" type="I" size="11">
+		<default value="0" />
+		<notnull />
+		</field>
+		<index name="approvelog_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_step2fields">
+		<field name="stepid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="fieldid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="readonly" type="I" size="11">
+			<default value="0" />
+			<notnull />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_step2users">
+		<field name="stepid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="userid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="alternate" type="I" size="1">
+		<default value="1" />
+		</field>
+
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_relationships">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="parentmodule" type="C" size="50">
+		</field>
+		<field name="parenttable" type="C" size="50">
+		</field>
+		<field name="parentid" type="C" size="50">
+		</field>
+		<field name="childmodule" type="C" size="50">
+		</field>
+		<field name="childtable" type="C" size="50">
+		</field>
+		<field name="childid" type="C" size="50">
+		</field>
+		<field name="childparentid" type="C" size="50">
+		</field>
+		<field name="relationtype" type="C" size="50">
+		</field>
+
+		<index name="relationships_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_receivesmsbox">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="frommobile" type="C" size="255">
+		</field>
+		<field name="tomobile" type="C" size="255">
+		</field>
+		<field name="content" type="text">
+		</field>
+		<field name="receivetime" type="T">
+		</field>
+		<field name="readed" type="I" size="2">
+		</field>
+		<index name="receivesmsbox_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_sendsmsbox">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="sendermobile" type="text">
+		</field>
+		<field name="content" type="text">
+		</field>
+		<field name="sendtime" type="T">
+		</field>
+		<field name="success" type="I" size="2">
+		<default value="1" />
+		</field>
+		<field name="message" type="text">
+		</field>
+		<field name="userid" type="I" size="19">
+		</field>
+		<index name="sendsmsbox_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+
+	<table name="ec_stepadvfilters">
+		<field name="stepid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="columnindex" type="I" size="11">
+		<notnull />
+		</field>
+		<field name="columnname" type="C" size="200">
+		<notnull />
+		</field>
+		<field name="thevalue" type="C" size="50">
+		<notnull />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_multifield">
+		<field name="multifieldid" type="I" size="19">
+		<notnull />
+		</field>
+		<field name="tabid" type="I" size="19">
+		<notnull />
+		<default value="0" />
+		</field>
+		<field name="totallevel" type="I" size="11">
+		<notnull />
+		<default value="2" />
+		</field>
+		<field name="multifieldname" type="C" size="255">
+		<notnull />
+		</field>
+		<field name="tablename" type="C" size="255">
+		<notnull />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_ship_country">
+		<field name="actualfieldid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+			<field name="actualfieldname" type="C" size="200">
+			<notnull />
+		</field>
+		<field name="sortorderid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="presence" type="I" size="1">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="thelevel" type="I" size="11">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="parentfieldid" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_bill_country">
+		<field name="actualfieldid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+			<field name="actualfieldname" type="C" size="200">
+			<notnull />
+		</field>
+		<field name="sortorderid" type="I" size="19">
+			<default value="0" />
+		</field>
+		<field name="presence" type="I" size="1">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="thelevel" type="I" size="11">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="parentfieldid" type="I" size="19">
+			<notnull />
+			<default value="0" />
+		</field>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+	<table name="ec_modcomments">
+		<field name="commentid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="modifiedtime" type="T">
+		</field>
+		<field name="crmid" type="I" size="19">
+		</field>
+		<field name="userid" type="I" size="19">
+		</field>
+		<field name="comments" type="text">
+		</field>
+		<index name="modcomments_idx">
+			<col>commentid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+
+
+	<table name="ec_reminders">
+		<field name="reminderid" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="createdtime" type="T">
+		</field>
+		<field name="remindertime" type="T">
+		</field>
+		<field name="crmid" type="I" size="19">
+		</field>
+		<field name="userid" type="I" size="19">
+		</field>
+		<field name="comments" type="text">
+		</field>
+		<field name="isused" type="I" size="3">
+		<default value="0" />
+		</field>
+		<index name="reminders_idx">
+			<col>reminderid</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_message">
+		<field name="id" type="I" size="19" >
+		    <key />
+		</field>
+		<field name="recipient" type="I" size="19" />
+		<field name="sender" type="I" size="19" />
+		<field name="message" type="X" />
+		<field name="type" type="X" />
+		<field name="stamp" type="X" />
+		<field name="received" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="deleted_sender" type="I" size="1">
+			<default value="0" />
+		</field>
+		<field name="deleted_recipient" type="I" size="1">
+			<default value="0" />
+		</field>
+		<index name="ajax_message_idx">
+			<col>id</col>
+			<unique />
+		</index>
+	</table>
+	<table name="ec_picklist">
+		<field name="id" type="I" size="19">
+			<key />
+			<notnull />
+		</field>
+		<field name="colvalue" type="C" size="50" />
+		<field name="colname" type="C" size="50" />
+		<field name="sequence" type="I" size="10" />
+		<index name="picklist_colname_idx">
+			<col>colname</col>
+			<col>colvalue</col>
+			<unique />
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+	<table name="ec_profile2field">
+		<field name="profileid" type="I" size="11">
+			<key />
+		</field>
+		<field name="tabid" type="I" size="10" />
+		<field name="fieldid" type="I" size="19">
+			<key />
+		</field>
+		<field name="visible" type="I" size="19" />
+		<field name="readonly" type="I" size="19" />
+
+		<index name="profile2field_profileid_tabid_fieldname_idx">
+			<col>profileid</col>
+			<col>tabid</col>
+			<col>fieldname</col>
+		</index>
+		<index name="profile2field_tabid_profileid_idx">
+			<col>tabid</col>
+			<col>profileid</col>
+		</index>
+		<index name="profile2field_visible_profileid_idx">
+			<col>visible</col>
+			<col>profileid</col>
+		</index>
+	</table>
+	<table name="ec_relmodfieldlist">
+		<field name="id" type="I" >
+			<key />
+		</field>
+		<field name="fieldname" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="module" type="C" size="30">
+			<notnull />
+		</field>
+		<field name="width" type="C" size="10">
+			<notnull />
+		</field>
+		<index name="module_crmid_idx">
+			<col>id</col>
+		</index>
+		<opt platform="mysql">Type=InnoDB</opt>
+	</table>
+</schema>

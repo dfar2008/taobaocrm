@@ -1,0 +1,1 @@
+<?php exit;?>1356059885a:10:{i:0;s:2:"48";s:5:"tabid";s:2:"48";i:1;s:7:"Memdays";s:10:"modulename";s:7:"Memdays";i:2;s:10:"ec_memdays";s:9:"tablename";s:10:"ec_memdays";i:3;s:10:"memdayname";s:9:"fieldname";s:10:"memdayname";i:4;s:9:"memdaysid";s:13:"entityidfield";s:9:"memdaysid";}

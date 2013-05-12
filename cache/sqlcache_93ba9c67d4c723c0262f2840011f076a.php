@@ -1,0 +1,1 @@
+<?php exit;?>1356080460s:290:"SELECT ec_field.* FROM ec_field INNER JOIN ec_def_org_field ON ec_def_org_field.fieldid=ec_field.fieldid AND ec_def_org_field.visible=0 WHERE ec_field.tabid=22 AND ec_field.block IN (61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72) AND ec_field.displaytype IN (1,2,4) ORDER BY block,sequence";

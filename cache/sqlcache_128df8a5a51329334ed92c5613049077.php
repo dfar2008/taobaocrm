@@ -1,0 +1,1 @@
+<?php exit;?>1356059910a:10:{i:0;s:2:"14";s:5:"tabid";s:2:"14";i:1;s:8:"Products";s:10:"modulename";s:8:"Products";i:2;s:11:"ec_products";s:9:"tablename";s:11:"ec_products";i:3;s:11:"productname";s:9:"fieldname";s:11:"productname";i:4;s:9:"productid";s:13:"entityidfield";s:9:"productid";}

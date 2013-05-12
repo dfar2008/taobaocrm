@@ -1,0 +1,30 @@
+<?php
+require_once('modules/Maillists/Maillists.php');
+require_once('include/logging.php');
+require_once('include/database/PearDatabase.php');
+global $adb;
+
+
+$sjid =trim($_REQUEST['sjid']);
+$attachmentsid =trim($_REQUEST['attachmentsid']);
+
+$deletesql = "delete from ec_attachmentsjrel where sjid={$sjid} and attachmentsid={$attachmentsid}";
+$adb->query($deletesql);
+
+
+$selectattidsql = "select ec_attachments.* from ec_attachments " .
+		" inner join ec_attachmentsjrel on ec_attachmentsjrel.attachmentsid = ec_attachments.attachmentsid " .
+		"where ec_attachmentsjrel.sjid=$sjid and ec_attachments.deleted=0 order by ec_attachments.attachmentsid asc";
+
+$result = $adb->query($selectattidsql);
+$num_rows = $adb->num_rows($result);
+$showhtml = '';
+if($num_rows >0){
+	while($row = $adb->fetch_array($result)){
+		$name = $row['name'];
+		$attachmentsid = $row['attachmentsid'];
+		$showhtml .=$name."&nbsp; <a href='javascript:;' onclick='DeleteMaillistAtt(".$sjid.",".$attachmentsid.");'>删除</a><br>";
+	}
+}
+	echo $showhtml;
+?>

@@ -1,0 +1,1 @@
+<?php exit;?>1356058705a:10:{i:0;s:1:"6";s:5:"tabid";s:1:"6";i:1;s:8:"Accounts";s:10:"modulename";s:8:"Accounts";i:2;s:10:"ec_account";s:9:"tablename";s:10:"ec_account";i:3;s:11:"accountname";s:9:"fieldname";s:11:"accountname";i:4;s:9:"accountid";s:13:"entityidfield";s:9:"accountid";}

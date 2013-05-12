@@ -1,0 +1,1 @@
+<?php exit;?>1356059895s:393:"<option value=\'ec_notes.title\'>主题</option><option value=\'ec_notes.accountid\'>客户</option><option value=\'ec_notes.notetype\'>联系类型</option><option value=\'ec_notes.contact_date\'>联系日期</option><option value=\'ec_notes.notecontent\'>內容</option><option value=\'ec_notes.createdtime\'>创建时间</option><option value=\'ec_notes.modifiedtime\'>修改时间</option>";

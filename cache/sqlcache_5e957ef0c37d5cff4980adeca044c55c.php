@@ -1,0 +1,1 @@
+<?php exit;?>1356072319a:4:{s:10:"columnname";s:62:"ec_account:lastorderdate:lastorderdate:Accounts_LastOrder_Date";s:9:"stdfilter";s:13:"before180days";s:9:"startdate";s:10:"1900-01-01";s:7:"enddate";s:10:"2012-06-24";}

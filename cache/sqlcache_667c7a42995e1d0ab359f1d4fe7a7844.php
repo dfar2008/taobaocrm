@@ -1,0 +1,1 @@
+<?php exit;?>1356059931s:267:"<option value=\'ec_maillisttmps.maillisttmpname\'>模板名称</option><option value=\'ec_maillisttmps.createdtime\'>创建时间</option><option value=\'ec_maillisttmps.modifiedtime\'>修改时间</option><option value=\'ec_maillisttmps.description\'>内容</option>";
